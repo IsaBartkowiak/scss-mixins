@@ -1,2 +1,2 @@
-# scss-mixins
-Collections of usefull scssmixins
+# Usefull scss MIXINS
+

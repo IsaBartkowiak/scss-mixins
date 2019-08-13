@@ -1,0 +1,58 @@
+//## Screen / Media queries mixin
+
+/* Usage:
+.box {
+ @include screen(m) {
+    width: 100%;
+ }
+ @include screen(s) {
+    width: 100%;
+ }
+ @include screen(s, min) {
+    width: 100%; // mobile first
+ }
+ @include screen(custom, 999, max) {
+    width: 100%; // custom size
+ }
+}
+*/
+
+$screen-breakpoints : (
+        xxs    : 375px,
+        xs     : 480px,
+        s      : 768px,
+        m      : 980px,
+        l      : 1280px
+);
+
+// use with @include screen(s){} or @include screen(m, min){}]
+@mixin screen($size, $type: max, $pixels: map-get($screen-breakpoints, 's')) {
+  @if $size == 'xs' {
+    @media screen and ($type + -width: map-get($screen-breakpoints, 'xs')) {
+      @content;
+    }
+  }
+  @else if $size == 's' {
+    @media screen and ($type + -width: map-get($screen-breakpoints, 's')) {
+      @content;
+    }
+  }
+  @else if $size == 'm' {
+    @media screen and ($type + -width: map-get($screen-breakpoints, 'm')) {
+      @content;
+    }
+  }
+  @else if $size == 'l' {
+    @media screen and ($type + -width: map-get($screen-breakpoints, 'l')) {
+      @content;
+    }
+  }
+  @else if $size == 'custom' {
+    @media screen and ($type + -width: $pixels + px) {
+      @content;
+    }
+  }
+  @else {
+    @content;
+  }
+}
